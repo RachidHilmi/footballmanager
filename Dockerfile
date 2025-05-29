@@ -1,23 +1,12 @@
-# Use Gradle to build the project
-FROM gradle:8.4.0-jdk17 AS builder
-
-# Set work directory inside container
+# Stage 1: build
+FROM gradle:8.2.1-jdk17 AS builder
 WORKDIR /app
-
-# Copy everything
 COPY . .
+RUN ./gradlew build -x test --stacktrace
 
-# Build the app without running tests
-RUN gradle build -x test
-
-# Use lightweight Java image for production
-FROM eclipse-temurin:17-jdk-alpine
-
-# Set work directory
+# Stage 2: run
+FROM eclipse-temurin:17-jdk
 WORKDIR /app
-
-# Copy the built jar from the builder
 COPY --from=builder /app/build/libs/*.jar app.jar
-
-# Run the app
+EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]

@@ -1,0 +1,88 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.2'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.appbasics'
+version = '0.0.1-SNAPSHOT'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+//configurations.configureEach {
+//	resolutionStrategy {
+//		force 'com.google.cloud:google-cloud-firestore:3.30.3' // or your desired version
+//	}
+//}
+
+configurations.configureEach {
+	exclude group: 'org.testng', module: 'testng'
+	//exclude group: 'junit', module: 'junit'  // Removes JUnit 4
+	//exclude group: 'org.junit.vintage', module: 'junit-vintage-engine' // Removes Vintage
+	//exclude group: 'org.junit.jupiter', module: 'junit-jupiter-api' // If another version is detected
+}
+
+bootRun {
+	jvmArgs = ['-Xmx2g']
+}
+
+dependencies {
+
+	//implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'io.lettuce:lettuce-core:6.2.5.RELEASE'
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
+
+	implementation 'com.google.cloud:spring-cloud-gcp-data-firestore:6.0.0'
+	implementation 'com.google.firebase:firebase-admin:9.4.3'
+	implementation 'com.google.cloud:google-cloud-firestore:3.30.7'
+	implementation 'com.google.cloud:spring-cloud-gcp-starter-data-firestore:6.0.0'
+
+	implementation 'org.springframework.boot:spring-boot-starter-reactor-netty:3.4.3'
+
+	//developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'io.projectreactor:reactor-test:3.7.2'
+	testImplementation 'org.mockito:mockito-core:5.15.2'
+	testImplementation 'org.mockito:mockito-junit-jupiter:5.15.2'
+	testImplementation 'org.mockito:mockito-inline:5.2.0'
+
+	testImplementation platform('org.junit:junit-bom:5.11.4')
+	testImplementation 'org.junit.jupiter:junit-jupiter'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.4'
+	testRuntimeOnly 'org.junit.platform:junit-platform-commons:1.11.4'
+
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

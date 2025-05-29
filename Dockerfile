@@ -2,6 +2,11 @@
 FROM gradle:8.2.1-jdk17 AS builder
 WORKDIR /app
 COPY . .
+
+# ✅ Give execute permission to gradlew
+RUN chmod +x ./gradlew
+
+# Now build the app
 RUN ./gradlew build -x test --stacktrace
 
 # Stage 2: run

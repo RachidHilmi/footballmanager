@@ -1,39 +1,34 @@
-HELP.md
+### Gradle ###
 .gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
-src/main/resources/firebase_service_account.json
+/build
+!gradle-wrapper.jar
+
+### Java ###
+*.class
+*.log
+*.jar
+*.war
+*.ear
+
+### IntelliJ ###
+.idea/
+*.iml
+out/
+
+### VS Code ###
+.vscode/
 
 ### STS ###
 .apt_generated
-.classpath
 .factorypath
 .project
 .settings
 .springBeans
 .sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+### Firebase Credentials (do not commit!)
+src/main/resources/firebase_service_account.json
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-
-### VS Code ###
-.vscode/
-src/main/resources/firebase_service_account.json 
+### Others ###
+nbbuild/
+dist/

@@ -1,5 +1,5 @@
 ### Gradle ###
-.gradle
+.gradle/
 /build
 !gradle-wrapper.jar
 
@@ -13,7 +13,7 @@
 ### IntelliJ ###
 .idea/
 *.iml
-out/
+/out/
 
 ### VS Code ###
 .vscode/

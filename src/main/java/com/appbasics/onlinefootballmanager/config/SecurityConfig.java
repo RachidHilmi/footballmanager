@@ -41,7 +41,11 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://10.0.2.2:8080")); // Adjust if needed
+        configuration.setAllowedOriginPatterns(List.of(
+                "http://10.0.2.2:8080",                // emulator
+                "http://localhost:*",                 // local dev
+                "https://onlinefootballmanager-production.up.railway.app"       // Railway deployment
+        ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
 

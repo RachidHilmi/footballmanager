@@ -2,7 +2,7 @@
 nixPkgs = ['openjdk', 'gradle']
 
 [phases.build]
-cmds = ['./gradlew clean build -x test']
+cmds = ['./gradlew build -x test -x check']
 
 [phases.start]
 cmd = 'java -jar build/libs/onlinefootballmanager-0.0.1-SNAPSHOT.jar'

@@ -1,6 +1,8 @@
 # Use official Eclipse Temurin JDK 21 image
 FROM eclipse-temurin:21-jdk
 
+ENV GRADLE_OPTS="-Xmx512m -Dorg.gradle.jvmargs=-Xmx256m"
+
 # Set working directory
 WORKDIR /app
 

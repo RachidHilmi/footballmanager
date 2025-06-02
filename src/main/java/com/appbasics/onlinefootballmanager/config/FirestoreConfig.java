@@ -15,16 +15,25 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Base64;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Configuration
 @EnableReactiveFirestoreRepositories(basePackages = "com.appbasics.onlinefootballmanager.repositories")
 
 public class FirestoreConfig {
+    private static final Logger log = LoggerFactory.getLogger(FirestoreConfig.class);
 
-    @Value("${FIREBASE_CONFIG_BASE64}")
+
+    @Value("${FIREBASE_CONFIG_BASE64:}")
     private String firebaseConfigBase64;
 
     @Bean
     public FirebaseApp firebaseApp() throws IOException {
+        if (firebaseConfigBase64 == null || firebaseConfigBase64.isEmpty()) {
+            log.warn("FIREBASE_CONFIG_BASE64 not set. FirebaseApp will not be initialized.");
+            return null;
+        }
         byte[] decoded = Base64.getDecoder().decode(firebaseConfigBase64);
         GoogleCredentials credentials = GoogleCredentials.fromStream(
                 new ByteArrayInputStream(decoded)
@@ -39,6 +48,10 @@ public class FirestoreConfig {
 
     @Bean
     public Firestore firestore(FirebaseApp firebaseApp) {
+        if (firebaseApp == null) {
+            log.warn("Firestore bean not created because FirebaseApp is null.");
+            return null;
+        }
         return FirestoreClient.getFirestore(firebaseApp);
     }
 }

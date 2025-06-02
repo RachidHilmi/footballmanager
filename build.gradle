@@ -17,21 +17,16 @@ java {
 	targetCompatibility = JavaVersion.VERSION_21
 }
 
+bootJar {
+	archiveFileName = 'app.jar'
+}
+
 repositories {
 	mavenCentral()
 }
 
-//configurations.configureEach {
-//	resolutionStrategy {
-//		force 'com.google.cloud:google-cloud-firestore:3.30.3' // or your desired version
-//	}
-//}
-
 configurations.configureEach {
 	exclude group: 'org.testng', module: 'testng'
-	//exclude group: 'junit', module: 'junit'  // Removes JUnit 4
-	//exclude group: 'org.junit.vintage', module: 'junit-vintage-engine' // Removes Vintage
-	//exclude group: 'org.junit.jupiter', module: 'junit-jupiter-api' // If another version is detected
 }
 
 bootRun {

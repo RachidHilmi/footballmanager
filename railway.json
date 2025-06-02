@@ -1,9 +1,5 @@
 {
-  "build": {
-    "env": {
-      "JAVA_VERSION": "21"
-    },
-    "buildCommand": "./gradlew build -x test -x check",
-    "startCommand": "java -jar build/libs/app.jar"
+  "deploy": {
+    "dockerfilePath": "Dockerfile"
   }
 }

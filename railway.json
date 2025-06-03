@@ -2,7 +2,7 @@
   "build": {
     "env": {
       "JAVA_VERSION": "21",
-      "SPRING_PROFILES_ACTIVE": "test",
+      "SPRING_PROFILES_ACTIVE": "prod",
       "GRADLE_OPTS": "-Xmx512m -Dorg.gradle.jvmargs=-Xmx256m"
     }
   },

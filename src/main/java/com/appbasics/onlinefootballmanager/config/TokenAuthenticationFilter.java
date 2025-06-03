@@ -21,7 +21,6 @@ import java.util.Collections;
 import java.util.Optional;
 
 @Component
-@Profile("!test")
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     private static final String BEARER_PREFIX = "Bearer ";

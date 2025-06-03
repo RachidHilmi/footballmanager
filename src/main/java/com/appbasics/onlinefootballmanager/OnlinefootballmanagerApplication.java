@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @SpringBootApplication()
 @EnableReactiveMongoRepositories(basePackages = "com.appbasics.onlinefootballmanager.repository.mongo")
-@EnableReactiveFirestoreRepositories(basePackages = "com.appbasics.onlinefootballmanager.repository.firestore")
+//@EnableReactiveFirestoreRepositories(basePackages = "com.appbasics.onlinefootballmanager.repository.firestore")
 
 
 public class OnlinefootballmanagerApplication {

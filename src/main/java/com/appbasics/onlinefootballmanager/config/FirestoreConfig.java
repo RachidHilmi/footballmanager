@@ -3,6 +3,7 @@ package com.appbasics.onlinefootballmanager.config;
 import org.springframework.beans.factory.annotation.Value;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.spring.data.firestore.repository.config.EnableReactiveFirestoreRepositories;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
@@ -21,7 +22,7 @@ import org.slf4j.LoggerFactory;
 
 @Configuration
 @Profile("!test")
-//@EnableReactiveFirestoreRepositories(basePackages = "com.appbasics.onlinefootballmanager.repositories")
+@EnableReactiveFirestoreRepositories(basePackages = "com.appbasics.onlinefootballmanager.repositories")
 
 public class FirestoreConfig {
     private static final Logger log = LoggerFactory.getLogger(FirestoreConfig.class);

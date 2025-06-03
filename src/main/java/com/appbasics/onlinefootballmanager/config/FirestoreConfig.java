@@ -19,9 +19,10 @@ import java.util.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Profile("!test")
+
 @Configuration
-@EnableReactiveFirestoreRepositories(basePackages = "com.appbasics.onlinefootballmanager.repositories")
+@Profile("!test")
+//@EnableReactiveFirestoreRepositories(basePackages = "com.appbasics.onlinefootballmanager.repositories")
 
 public class FirestoreConfig {
     private static final Logger log = LoggerFactory.getLogger(FirestoreConfig.class);

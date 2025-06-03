@@ -16,4 +16,4 @@ RUN chmod +x ./gradlew
 RUN ./gradlew clean build -x test -x check
 
 # Set the command to run the application JAR
-CMD ["java", "-XX:+UseSerialGC", "-Xms64m", "-Xmx128m", "-Dspring.profiles.active=test", "-jar", "build/libs/app.jar"]
+CMD ["java", "-XX:+UseSerialGC", "-Xms64m", "-Xmx128m", "-Dspring.profiles.active=prod", "-jar", "build/libs/app.jar"]

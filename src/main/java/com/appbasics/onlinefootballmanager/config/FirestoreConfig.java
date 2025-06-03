@@ -32,22 +32,22 @@ public class FirestoreConfig {
     private String firebaseConfigBase64;
 
     @ConditionalOnProperty(name = "FIREBASE_CONFIG_BASE64")
-    @Bean
-    public FirebaseApp firebaseApp() throws IOException {
-        if (firebaseConfigBase64 == null || firebaseConfigBase64.isEmpty()) {
-            throw new IllegalStateException("Missing FIREBASE_CONFIG_BASE64 environment variable");
-        }
-        byte[] decoded = Base64.getDecoder().decode(firebaseConfigBase64);
-        GoogleCredentials credentials = GoogleCredentials.fromStream(
-                new ByteArrayInputStream(decoded)
-        );
-
-        FirebaseOptions options = FirebaseOptions.builder()
-                .setCredentials(credentials)
-                .build();
-
-        return FirebaseApp.initializeApp(options);
-    }
+//    @Bean
+//    public FirebaseApp firebaseApp() throws IOException {
+//        if (firebaseConfigBase64 == null || firebaseConfigBase64.isEmpty()) {
+//            throw new IllegalStateException("Missing FIREBASE_CONFIG_BASE64 environment variable");
+//        }
+//        byte[] decoded = Base64.getDecoder().decode(firebaseConfigBase64);
+//        GoogleCredentials credentials = GoogleCredentials.fromStream(
+//                new ByteArrayInputStream(decoded)
+//        );
+//
+//        FirebaseOptions options = FirebaseOptions.builder()
+//                .setCredentials(credentials)
+//                .build();
+//
+//        return FirebaseApp.initializeApp(options);
+//    }
 
     @Bean
     public Firestore firestore(FirebaseApp firebaseApp) {

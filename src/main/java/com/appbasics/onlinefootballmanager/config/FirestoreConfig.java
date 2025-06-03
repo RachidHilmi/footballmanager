@@ -7,6 +7,7 @@ import com.google.cloud.spring.data.firestore.repository.config.EnableReactiveFi
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -29,11 +30,11 @@ public class FirestoreConfig {
     @Value("${FIREBASE_CONFIG_BASE64:}")
     private String firebaseConfigBase64;
 
+    @ConditionalOnProperty(name = "FIREBASE_CONFIG_BASE64")
     @Bean
     public FirebaseApp firebaseApp() throws IOException {
         if (firebaseConfigBase64 == null || firebaseConfigBase64.isEmpty()) {
-            log.warn("FIREBASE_CONFIG_BASE64 not set. FirebaseApp will not be initialized.");
-            return null;
+            throw new IllegalStateException("Missing FIREBASE_CONFIG_BASE64 environment variable");
         }
         byte[] decoded = Base64.getDecoder().decode(firebaseConfigBase64);
         GoogleCredentials credentials = GoogleCredentials.fromStream(

@@ -3,7 +3,7 @@
     "env": {
       "JAVA_VERSION": "21",
       "SPRING_PROFILES_ACTIVE": "prod",
-      "GRADLE_OPTS": "-Xmx512m -Dorg.gradle.jvmargs=-Xmx256m"
+      "GRADLE_OPTS": "-Xmx256m -Dorg.gradle.daemon=false"
     }
   },
   "deploy": {

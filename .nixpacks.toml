@@ -2,7 +2,9 @@
 nixPkgs = ['openjdk', 'gradle']
 
 [phases.build]
-cmds = ['./gradlew build -x test -x check']
+# cmds = ['./gradlew build -x test -x check']
+cmds = ['./gradlew clean build -x test -x check --no-daemon -Dorg.gradle.jvmargs="-Xmx256m"']
 
 [phases.start]
-cmd = 'java -jar build/libs/app.jar'
+# cmd = 'java -jar build/libs/app.jar'
+cmd = 'java -Xms128m -Xmx256m -XX:+UseSerialGC -jar build/libs/app.jar'

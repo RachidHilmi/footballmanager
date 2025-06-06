@@ -50,7 +50,7 @@ dependencies {
 
 	implementation 'com.google.cloud:spring-cloud-gcp-data-firestore:6.0.0'
 	implementation 'com.google.firebase:firebase-admin:9.4.3'
-	implementation 'com.google.cloud:google-cloud-firestore:3.30.7'
+	//implementation 'com.google.cloud:google-cloud-firestore:3.30.7'
 	implementation 'com.google.cloud:spring-cloud-gcp-starter-data-firestore:6.0.0'
 
 	implementation 'org.springframework.boot:spring-boot-starter-reactor-netty:3.4.3'

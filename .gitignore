@@ -28,6 +28,7 @@ build
 
 ### Firebase Credentials (do not commit!)
 src/main/resources/firebase_service_account.json
+firebase-service-account.json
 
 ### Others ###
 nbbuild/

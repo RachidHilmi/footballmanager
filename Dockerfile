@@ -1,19 +1,9 @@
-# Use official Eclipse Temurin JDK 21 image
-FROM eclipse-temurin:21-jdk
-
- ENV GRADLE_OPTS="-Xmx512m -Dorg.gradle.jvmargs=-Xmx256m"
-
-# Set working directory
+FROM eclipse-temurin:21-jdk as builder
 WORKDIR /app
-
-# Copy project files into the container
 COPY . .
+RUN chmod +x ./gradlew && ./gradlew clean bootJar -x test -x check
 
-# Make gradlew executable
-RUN chmod +x ./gradlew
-
-# Build the application (skip tests and checks for CI deploy speed)
- RUN ./gradlew clean build -x test -x check
-
-# Set the command to run the application JAR
- CMD ["java", "-XX:+UseSerialGC", "-Xms64m", "-Xmx128m", "-Dspring.profiles.active=prod", "-jar", "build/libs/app.jar"]
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+COPY --from=builder /app/build/libs/*.jar app.jar
+CMD ["sh", "-c", "java -Xms64m -Xmx128m -Dspring.profiles.active=prod -jar app.jar"]

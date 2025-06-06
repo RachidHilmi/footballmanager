@@ -9,5 +9,5 @@ FROM eclipse-temurin:21-jre
 WORKDIR /app
 COPY --from=builder /app/build/libs/*.jar app.jar
 
-# Make sure logs are streamed and port is set correctly
+EXPOSE 8080
 CMD ["sh", "-c", "echo Starting app on port $PORT && java -Xms64m -Xmx128m -Dspring.profiles.active=prod -Dserver.port=$PORT -jar app.jar"]
